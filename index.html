@@ -7,22 +7,28 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --bg1: radial-gradient(60% 80% at 50% -10%, rgba(99,102,241,0.35), transparent);
-      --bg2: radial-gradient(60% 80% at 10% 30%, rgba(168,85,247,0.18), transparent);
-      --bg3: radial-gradient(60% 80% at 90% 30%, rgba(34,211,238,0.20), transparent);
-      --glass: rgba(255,255,255,0.06);
-      --glass-border: rgba(255,255,255,0.14);
-      --text: #ffffff;
-      --muted: rgba(255,255,255,0.7);
-      --muted2: rgba(255,255,255,0.55);
-      --primary: #818cf8;
-      --accent: #a78bfa;
-      --cyan: #22d3ee;
-      --emerald: #34d399;
-      --amber: #f59e0b;
-      --red: #ef4444;
-    }
+:root{
+  /* Brighter, high-contrast palette */
+  --bg1: radial-gradient(60% 80% at 50% -10%, rgba(99,102,241,.32), transparent);
+  --bg2: radial-gradient(60% 80% at 10% 30%, rgba(167,139,250,.25), transparent);
+  --bg3: radial-gradient(60% 80% at 90% 30%, rgba(34,211,238,.24), transparent);
+
+  --card: rgba(20,24,38,.94);
+  --card-alt: rgba(16,19,31,.92);
+  --border: rgba(255,255,255,.10);
+  --border-strong: rgba(255,255,255,.16);
+
+  --text: #f6f9ff;      /* brighter main text */
+  --muted: #d5defa;     /* brighter secondary text */
+  --muted2: #b9c6ec;    /* brighter tertiary text */
+
+  --indigo: #8b91ff;
+  --violet: #b296ff;
+  --cyan: #3ae0ff;
+  --emerald: #40e6a9;
+  --amber: #ffc857;
+  --red: #ff5757;
+}
     *{ box-sizing: border-box }
     body{
       margin:0; color:var(--text); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
