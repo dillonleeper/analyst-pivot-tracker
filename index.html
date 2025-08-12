@@ -6,125 +6,72 @@
   <title>Analyst Pivot — 12-Week Tracker</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    /* Accessible dark palette */
-    --bg1: radial-gradient(60% 80% at 50% -10%, rgba(60,72,180,.28), transparent);
-    --bg2: radial-gradient(60% 80% at 10% 30%, rgba(124,58,237,.18), transparent);
-    --bg3: radial-gradient(60% 80% at 90% 30%, rgba(34,211,238,.18), transparent);
+  <style>
+    :root{
+      --bg1: radial-gradient(60% 80% at 50% -10%, rgba(99,102,241,0.35), transparent);
+      --bg2: radial-gradient(60% 80% at 10% 30%, rgba(168,85,247,0.18), transparent);
+      --bg3: radial-gradient(60% 80% at 90% 30%, rgba(34,211,238,0.20), transparent);
+      --glass: rgba(255,255,255,0.06);
+      --glass-border: rgba(255,255,255,0.14);
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.7);
+      --muted2: rgba(255,255,255,0.55);
+      --primary: #818cf8;
+      --accent: #a78bfa;
+      --cyan: #22d3ee;
+      --emerald: #34d399;
+      --amber: #f59e0b;
+      --red: #ef4444;
+    }
+    *{ box-sizing: border-box }
+    body{
+      margin:0; color:var(--text); font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg1), var(--bg2), var(--bg3), #0b0e16;
+      min-height:100vh;
+    }
+    .wrap{ max-width:1040px; margin:0 auto; padding:32px 16px 80px }
+    .chip{ display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:.08em; text-transform:uppercase;
+      padding:6px 10px; border-radius:999px; background:var(--glass); border:1px solid var(--glass-border); color:var(--muted) }
+    h1{ margin:6px 0 0; font-size:40px; line-height:1.1 }
+    p.lede{ color:var(--muted); max-width:720px }
+    .btn{ cursor:pointer; border:1px solid var(--glass-border); background:var(--glass); color:var(--text); border-radius:14px; padding:10px 14px; transition:.2s }
+    .btn:hover{ background:rgba(255,255,255,0.10) }
+    .grid3{ display:grid; grid-template-columns:1fr; gap:12px }
+    @media(min-width:960px){ .grid3{ grid-template-columns: auto 1fr auto } }
 
-    --card: rgba(18,22,35,.92);          /* solid, not foggy */
-    --card-alt: rgba(16,19,31,.88);
-    --border: rgba(255,255,255,.08);
-    --border-strong: rgba(255,255,255,.14);
+    .glass{ background:var(--glass); border:1px solid var(--glass-border); border-radius:20px; padding:18px; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+    .progress{ height:12px; width:100%; background:rgba(255,255,255,.10); border-radius:999px; overflow:hidden }
+    .bar{ height:100%; background:linear-gradient(90deg, #6366f1, #a855f7, #22d3ee); width:0% }
 
-    --text: #eaf0ff;                     /* main text */
-    --muted: #b6c2e2;                    /* secondary */
-    --muted2: #93a0bf;                   /* tertiary */
+    .week-nav{ text-align:center }
+    .week-title{ font-size:22px; font-weight:700; margin-top:4px }
+    .week-sub{ color:var(--muted); margin-top:2px }
 
-    --indigo: #7c83ff;
-    --violet: #a78bfa;
-    --cyan: #22d3ee;
-    --emerald: #34d399;
-    --amber: #f59e0b;
-    --red: #ef4444;
-  }
+    .task{ display:block; width:100%; text-align:left; border:1px solid var(--glass-border); background:rgba(255,255,255,.05);
+      padding:12px 14px; border-radius:14px; transition:.15s }
+    .task:hover{ background:rgba(255,255,255,.10) }
+    .task.done{ background:rgba(16,185,129,.18); border-color:rgba(16,185,129,.35) }
+    .task-row{ display:flex; align-items:center; gap:10px }
+    .check{
+      width:22px; height:22px; flex:0 0 22px; border-radius:999px; display:inline-flex; align-items:center; justify-content:center;
+      border:1px solid rgba(255,255,255,.25); background:transparent; transition:.2s
+    }
+    .task.done .check{ border-color:#10b981; background:rgba(16,185,129,.25) }
+    .task text{ color:var(--text) }
+    .task.done .label{ text-decoration:line-through; color:var(--muted2) }
 
-  *{ box-sizing:border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale }
-  html { font-size: 16px; }
-  @media (min-width: 1200px){ html { font-size: 17px; } }
+    .weeks-grid{ display:grid; gap:10px; grid-template-columns:1fr }
+    @media(min-width:800px){ .weeks-grid{ grid-template-columns:repeat(3,1fr) } }
+    .week-cell{ border:1px solid var(--glass-border); background:rgba(255,255,255,.05); border-radius:16px; padding:12px; text-align:left; transition:.2s; cursor:pointer }
+    .week-cell:hover{ background:rgba(255,255,255,.10) }
+    .tag{ color:var(--muted); font-size:12px }
+    .complete{ color:#86efac; font-size:12px; font-weight:600 }
 
-  body{
-    margin:0;
-    color:var(--text);
-    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
-    background: var(--bg1), var(--bg2), var(--bg3), #0a0e18;
-    min-height:100vh;
-  }
+    .footer{ text-align:center; color:var(--muted); font-size:12px; margin-top:32px }
 
-  .wrap{ max-width: 1040px; margin:0 auto; padding:32px 16px 80px }
-
-  .chip{
-    display:inline-flex; align-items:center; gap:8px;
-    font-size:.8rem; letter-spacing:.02em;
-    padding:6px 10px; border-radius:999px;
-    background: var(--card-alt); border:1px solid var(--border);
-    color: var(--muted);
-  }
-
-  h1{
-    margin:8px 0 0; font-size: clamp(1.8rem, 2.6vw, 2.6rem); line-height:1.15;
-    font-weight: 700; letter-spacing: -.01em;
-  }
-  p.lede{ color:var(--muted); max-width: 720px; font-size: 1rem; line-height:1.6 }
-
-  .btn{
-    cursor:pointer; border:1px solid var(--border-strong);
-    background: var(--card-alt); color:var(--text);
-    border-radius:14px; padding:10px 14px; transition:.18s ease;
-    font-weight: 600;
-  }
-  .btn:hover{ background:#151b2a; border-color: var(--border-strong) }
-  .btn:active{ transform: translateY(1px) }
-
-  .glass{
-    background: var(--card);             /* no blur; crisp */
-    border:1px solid var(--border);
-    border-radius:20px; padding:18px;
-    box-shadow: 0 12px 32px rgba(0,0,0,.35);
-  }
-
-  /* Progress bars: thicker track, brighter fill */
-  .progress{ height:14px; width:100%; background:#20273a; border-radius:999px; overflow:hidden; box-shadow: inset 0 1px 0 rgba(255,255,255,.04) }
-  .bar{ height:100%; background:linear-gradient(90deg, #6366f1, #a855f7, #22d3ee) }
-
-  /* Week nav */
-  .grid3{ display:grid; grid-template-columns:1fr; gap:12px }
-  @media(min-width:960px){ .grid3{ grid-template-columns: auto 1fr auto } }
-  .week-nav{ text-align:center }
-  .week-title{ font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 700; margin-top:4px; letter-spacing: -.01em }
-  .week-sub{ color:var(--muted); margin-top:6px; font-size:.95rem }
-
-  /* Task items: bigger text, stronger contrast */
-  .task{
-    display:block; width:100%; text-align:left;
-    border:1px solid var(--border);
-    background:#121827;                  /* darker, solid */
-    padding:14px 16px; border-radius:14px; transition: background .15s, border-color .15s;
-  }
-  .task:hover{ background:#151d31; border-color: var(--border-strong) }
-  .task-row{ display:flex; align-items:center; gap:12px }
-  .label{ font-size:1rem; line-height:1.45; color:var(--text) }
-
-  /* Checkbox */
-  .check{
-    width:22px; height:22px; flex:0 0 22px;
-    border-radius:6px; display:inline-flex; align-items:center; justify-content:center;
-    border:1px solid #36405c; background:#0f1422; color:#93c5fd; font-weight:700;
-  }
-
-  /* Completed state: keep readable (no faint gray-on-gray) */
-  .task.done{ background:#0f1f1a; border-color:#1d6e59 }
-  .task.done .check{ border-color:#22c38a; background:#123a2e; color:#d1fae5 }
-  .task.done .label{ color:#d7ffe8; text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: rgba(52,211,153,.7) }
-
-  /* Weeks overview cards: clearer titles / counts */
-  .weeks-grid{ display:grid; gap:10px; grid-template-columns:1fr }
-  @media(min-width:800px){ .weeks-grid{ grid-template-columns:repeat(3,1fr) } }
-  .week-cell{
-    border:1px solid var(--border); background:#111727; border-radius:16px; padding:12px;
-    text-align:left; transition:.18s; cursor:pointer;
-  }
-  .week-cell:hover{ background:#151d31; border-color: var(--border-strong) }
-  .week-cell .tag{ color:var(--muted); font-size:.85rem }
-  .week-cell .complete{ color:#86efac; font-size:.82rem; font-weight:700 }
-
-  /* Small text */
-  .tag{ color:var(--muted); font-size:.9rem }
-
-  .footer{ text-align:center; color:var(--muted); font-size:.85rem; margin-top:28px }
-</style>
-
+    .row{ display:flex; align-items:center; gap:12px }
+    .space{ height:12px }
+  </style>
 </head>
 <body>
   <div class="wrap">
